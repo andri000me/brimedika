@@ -126,23 +126,14 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                     <li class="breadcrumb-item"><a href="<?php echo base_url() ?>C_Administrasi">Administrasi</a></li>
-                                    <li class="breadcrumb-item active">Pasien</li>
+                                    <li class="breadcrumb-item"><a href="<?php echo base_url() ?>C_Administrasi">Administrasi</a></li>
+                                    <li class="breadcrumb-item"><a href="<?php echo base_url() ?>C_Administrasi/pasien">Pasien</a></li>
+                                    <li class="breadcrumb-item active">Tambah Pasien</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Halaman Pasien</h4>
-                              
-                             <?php if($this->session->flashdata('item')){
-                                $message = $this->session->flashdata('item');
-                            ?>
-                            <div class="<?php echo $message['class']; ?>" role="alert">
-                               
-                                <?php echo $message['message']; ?>
-                            </div>              
-                            <?php }?>
-                            <a href="<?php echo base_url();?>C_Administrasi/addPasien" class="btn btn-primary">Tambah Pasien</a>
-                            <br>
-                            <br>
+                            <h4 class="page-title">Tambah Pasien</h4>
+
+
 
                         </div>
                     </div>
@@ -154,42 +145,80 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title">Daftar Pasien</h4>
+                                <h4 class="header-title">Form Tambah Pasien</h4>
+                                   <form class="form-horizontal" method="post" action="<?php echo base_url('C_Administrasi/tambah') ?>">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Nama </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="nama" class="form-control" placeholder="Masukan Nama Pasien..">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Umur </label>
+                                        <div class="col-sm-10">
+                                            <input type="number" min="0" name="umur" class="form-control" placeholder="Masukan Umur Pasien.." size="3">
+                                            
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                    
+                                        <label class="col-sm-2 col-form-label">Jenis Kelamin </label>
+                                  
+                                     <div class="col-md-6">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio1" name="jeniskel" class="custom-control-input" value="pria">
+                                                <label class="custom-control-label" for="customRadio1">Pria</label>
+                                            </div>
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio2" name="jeniskel" class="custom-control-input" value="wanita">
+                                                <label class="custom-control-label" for="customRadio2">Wanita</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Alamat </label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" name="alamat"  rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                   <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Tanggal Lahir</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" type="date" name="tanggal" max="<?php echo date('Y-m-d'); ?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Tempat Lahir </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="tempat" class="form-control" placeholder="Masukan Tempat Lahir Pasien.." size="3">
+                                        </div>
+                                    </div>
+                                   <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Pekerjaan </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="pekerjaan" class="form-control" placeholder="Masukan Pekerjaan Pasien.." size="3">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">No Telp </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="nomor" class="form-control" placeholder="Masukan No. Telepon Pasien.." size="3">
+                                        </div>
+                                    </div>
+                                    <style type="text/css">
+                                        #wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th>Nama Pasien</th>
-                                            <th>Umur</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Alamat</th>
-                                            <th>No Telp</th>
-                                            <th>Tempat, Tgl Lahir</th>
-                                            <th>Pekerjaan</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                
-                                
-                                    <tbody>
-                                        <?php foreach($pasien as $row){ ?>
-                                        <tr>
-                                            <td><?php echo $row->nmPasien ?></td>
-                                            <td><?php echo $row->umur ?></td>
-                                            <td><?php echo strtoupper($row->gender) ?></td>
-                                            <td><?php echo $row->alamat ?></td>
-                                            <td><?php echo $row->noTelp ?></td>
-                                            <td><?php echo $row->tempatLahir.', '.$row->tglLahir ?></td>
-                                            <td><?php echo $row->pekerjaan ?></td>
-                                            <td><a href="<?php echo base_url();?>C_Administrasi/rekamMedis/<?php echo $row->idPasien ?>" class="btn btn-primary" data-toggle="tooltip" title="Rekam Medis"><i class="fe-folder"></i></button> <a href="javascript: void(0);" class="dropdown-toggle arrow-none btn btn-light btn-sm" data-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="<?php echo base_url();?>C_Administrasi/editPasien/<?php echo $row->idPasien ?>"><i class="mdi mdi-pencil mr-1 text-muted"></i>Edit Pasien</a>
-                                                            <a class="dropdown-item" href="<?php echo base_url();?>C_Administrasi/hapusPasien/<?php echo $row->idPasien ?>"  onclick="return confirm('Anda yakin akan menghapus data pasien berikut?');"><i class="mdi mdi-delete mr-1 text-muted"></i>Hapus Pasien</a>
-                                                           </td>
-                                        </tr>
-                                    <?php } ?>
-                                    </tbody>
-                                </table>
+
+                                    </style>
+                                    <div id="wrapper">
+                                          <button type="submit" class="btn btn-primary">Tambah Data</button>
+                                        </div>
+                                                    
+                                </form>
                                 </div>
                             </div>
                         </div>

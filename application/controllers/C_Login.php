@@ -6,19 +6,22 @@ class C_login extends CI_Controller {
 	public function __construct(){
 		 parent::__construct();
 		
-        if(!isset($_SESSION['username'])){
-            redirect('C_Login');
-        };
-		if($this->session->level == 'Administrasi'){
-			redirect('C_Administrasi');
-		}else if($this->session->level == 'Dokter'){
-			redirect('C_Dokter');
-		}
+ 
 		
 	}
 
 	public function index()
 	{
+      
+     if($this->session->logged == 'y'){
+    if($this->session->level == 'Administrasi'){
+            redirect('C_Administrasi');
+        }else if($this->session->level == 'Dokter'){
+            redirect('C_Dokter');
+        };
+     } else{
+     //redirect('C_login/index');
+     }
 		$this->load->view('login');
 	}
 
@@ -29,7 +32,15 @@ class C_login extends CI_Controller {
         $this->db->where('password', $password);
         $query =  $this->db->get('dokter');
         if($query->num_rows() > 0){
-		#	login dokter
+          $row = $query->row();
+		  $data = array(
+                'logged' => 'y',
+                'id_dokter' => $row->idDokter,
+                'username' => $row->namaDokter,
+                'nama' => $row->namaDokter,
+                'level' => 'Dokter'
+            );
+         $this->session->set_userdata($data);
         redirect('C_Dokter');
         }else{
         # login administrasi

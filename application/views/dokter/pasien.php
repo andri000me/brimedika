@@ -131,16 +131,8 @@
                                 </ol>
                             </div>
                             <h4 class="page-title">Halaman Pasien</h4>
-                              
-                             <?php if($this->session->flashdata('item')){
-                                $message = $this->session->flashdata('item');
-                            ?>
-                            <div class="<?php echo $message['class']; ?>" role="alert">
-                               
-                                <?php echo $message['message']; ?>
-                            </div>              
-                            <?php }?>
-                            <a href="<?php echo base_url();?>C_Administrasi/addPasien" class="btn btn-primary">Tambah Pasien</a>
+                      
+                         
                             <br>
                             <br>
 
@@ -181,10 +173,8 @@
                                             <td><?php echo $row->noTelp ?></td>
                                             <td><?php echo $row->tempatLahir.', '.$row->tglLahir ?></td>
                                             <td><?php echo $row->pekerjaan ?></td>
-                                            <td><a href="<?php echo base_url();?>C_Administrasi/rekamMedis/<?php echo $row->idPasien ?>" class="btn btn-primary" data-toggle="tooltip" title="Rekam Medis"><i class="fe-folder"></i></button> <a href="javascript: void(0);" class="dropdown-toggle arrow-none btn btn-light btn-sm" data-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="<?php echo base_url();?>C_Administrasi/editPasien/<?php echo $row->idPasien ?>"><i class="mdi mdi-pencil mr-1 text-muted"></i>Edit Pasien</a>
-                                                            <a class="dropdown-item" href="<?php echo base_url();?>C_Administrasi/hapusPasien/<?php echo $row->idPasien ?>"  onclick="return confirm('Anda yakin akan menghapus data pasien berikut?');"><i class="mdi mdi-delete mr-1 text-muted"></i>Hapus Pasien</a>
+                                            <td><a href="<?php echo base_url();?>C_Dokter/rekamMedis/<?php echo $row->idPasien ?>" class="btn btn-primary" data-toggle="tooltip" title="Rekam Medis"><i class="fe-folder"></i></button> 
+                                                      
                                                            </td>
                                         </tr>
                                     <?php } ?>

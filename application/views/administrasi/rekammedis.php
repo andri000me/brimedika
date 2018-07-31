@@ -126,11 +126,12 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                     <li class="breadcrumb-item"><a href="<?php echo base_url() ?>C_Administrasi">Administrasi</a></li>
-                                    <li class="breadcrumb-item active">Pasien</li>
+                                    <li class="breadcrumb-item"><a href="<?php echo base_url() ?>C_Administrasi">Administrasi</a></li>
+                                    <li class="breadcrumb-item"><a href="<?php echo base_url() ?>C_Administrasi/pasien">Pasien</a></li>
+                                    <li class="breadcrumb-item active">Rekam Medis</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Halaman Pasien</h4>
+                            <h4 class="page-title">Halaman Rekam Medis Pasien</h4>
                               
                              <?php if($this->session->flashdata('item')){
                                 $message = $this->session->flashdata('item');
@@ -140,7 +141,7 @@
                                 <?php echo $message['message']; ?>
                             </div>              
                             <?php }?>
-                            <a href="<?php echo base_url();?>C_Administrasi/addPasien" class="btn btn-primary">Tambah Pasien</a>
+                          <!--   <a href="<?php echo base_url();?>C_Administrasi/addRekam/<?php echo $this->uri->segment(3);  ?>" class="btn btn-primary">Tambah Rekam Medis</a> -->
                             <br>
                             <br>
 
@@ -154,41 +155,38 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title">Daftar Pasien</h4>
+                                <h4 class="header-title">List Rekam Medis</h4>
 
-                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap">
+                             <table id="datatable" class="table table-striped dt-responsive nowrap">
                                     <thead>
                                         <tr>
                                             <th>Nama Pasien</th>
-                                            <th>Umur</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Alamat</th>
-                                            <th>No Telp</th>
-                                            <th>Tempat, Tgl Lahir</th>
-                                            <th>Pekerjaan</th>
-                                            <th>Aksi</th>
+                                            <th>Tanggal Pemeriksaan</th>
+                                            <th>Anamnesa</th>
+                                            <th>Diagnosa</th>
+                                            <th>Terapi</th>
+                                            <th>Ket Terapi</th>
+                                           <!--  <th>Aksi</th> -->
                                         </tr>
                                     </thead>
                                 
                                 
                                     <tbody>
-                                        <?php foreach($pasien as $row){ ?>
+                                        <?php foreach($rekam as $row){ ?>
                                         <tr>
-                                            <td><?php echo $row->nmPasien ?></td>
-                                            <td><?php echo $row->umur ?></td>
-                                            <td><?php echo strtoupper($row->gender) ?></td>
-                                            <td><?php echo $row->alamat ?></td>
-                                            <td><?php echo $row->noTelp ?></td>
-                                            <td><?php echo $row->tempatLahir.', '.$row->tglLahir ?></td>
-                                            <td><?php echo $row->pekerjaan ?></td>
-                                            <td><a href="<?php echo base_url();?>C_Administrasi/rekamMedis/<?php echo $row->idPasien ?>" class="btn btn-primary" data-toggle="tooltip" title="Rekam Medis"><i class="fe-folder"></i></button> <a href="javascript: void(0);" class="dropdown-toggle arrow-none btn btn-light btn-sm" data-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
+                                            <td><?php echo getnama($row->idPasien) ?></td>
+                                            <td><?php echo $row->tglPemeriksaan ?></td>
+                                            <td><?php echo $row->anamnesa ?></td>
+                                            <td><?php echo $row->diagnosa ?></td>
+                                            <td><?php echo $row->terapi ?></td>
+                                            <td><?php echo $row->ketTerapi ?></td>
+                                            <!-- <td> <a href="javascript: void(0);" class="dropdown-toggle arrow-none btn btn-light btn-sm" data-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="<?php echo base_url();?>C_Administrasi/editPasien/<?php echo $row->idPasien ?>"><i class="mdi mdi-pencil mr-1 text-muted"></i>Edit Pasien</a>
-                                                            <a class="dropdown-item" href="<?php echo base_url();?>C_Administrasi/hapusPasien/<?php echo $row->idPasien ?>"  onclick="return confirm('Anda yakin akan menghapus data pasien berikut?');"><i class="mdi mdi-delete mr-1 text-muted"></i>Hapus Pasien</a>
-                                                           </td>
+                                                            <a class="dropdown-item" href="<?php echo base_url();?>C_Administrasi/editRekam/<?php echo $row->noRM ?>/<?php echo $row->idPasien ?>"><i class="mdi mdi-pencil mr-1 text-muted"></i>Edit Rekam Medis</a>
+                                                            <a class="dropdown-item" href="<?php echo base_url();?>C_Administrasi/hapusRekam/<?php echo $row->noRM ?>/<?php echo $row->idPasien ?>""  onclick="return confirm('Anda yakin akan menghapus data pasien berikut?');"><i class="mdi mdi-delete mr-1 text-muted"></i>Hapus Rekam Medis</a></td> -->
                                         </tr>
                                     <?php } ?>
-                                    </tbody>
+                                    </tbody> 
                                 </table>
                                 </div>
                             </div>
