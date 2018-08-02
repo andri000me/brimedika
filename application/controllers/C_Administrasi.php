@@ -174,10 +174,12 @@ class C_Administrasi extends CI_Controller {
 		$this->load->view('administrasi/pembayaran_gigi',$data);	
 	}
 	public function tambahPembayaranUmum(){
+		$t1 = html_escape($this->input->post('total'));
+		$t2 = html_escape($this->input->post('total2'));
 		$data = array(
 		'idPasien'=> html_escape($this->input->post('idPasien')),
 		'tglTransaksi' => html_escape($this->input->post('tanggal')),
-		'totalTransaksi' => html_escape($this->input->post('total')),
+		'totalTransaksi' => $t1+$t2,
 		'idPetAdministrasi' => $this->session->userdata('id_perawat')
 		);
 		if($this->yeah->addData($data,'transaksi')){
@@ -191,10 +193,12 @@ class C_Administrasi extends CI_Controller {
 
 	}
 	public function tambahPembayaranGigi(){
+		$t1 = html_escape($this->input->post('total'));
+		$t2 = html_escape($this->input->post('total2'));
 		$data = array(
 		'idPasien'=> html_escape($this->input->post('idPasien')),
 		'tglTransaksi' => html_escape($this->input->post('tanggal')),
-		'totalTransaksi' => html_escape($this->input->post('total')),
+		'totalTransaksi' => $t1+$t2,
 		'idPetAdministrasi' => $this->session->userdata('id_perawat')
 		);
 		if($this->yeah->addData($data,'transaksi')){

@@ -168,11 +168,60 @@
                                     </div>                                    
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Terapi </label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-8">
                                             <input type="text" name="terapi" class="form-control" placeholder="Terapi Pasien..">
                                             <input type="hidden" name="id" class="form-control" value="<?php echo $this->uri->segment(3) ?>">
+
                                         </div>
+                                        <div class="col-sm-2">  <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">List Obat</button>                      <!-- sample modal content -->
+                                <div id="myModal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myModalLabel">List Obat</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                       
+                                         <table " class="table table-striped dt-responsive nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Jenis Obat</th>
+                                                        <th>Nama Obat</th>
+                                                        <th>Stok</th>
+                                                        <th>Kadaluwarsa</th>
+                                                        <th>Harga</th>
+                                                    
+                                                    </tr>
+                                                </thead>
+                                            
+                                            
+                                                <tbody>
+                                                    <?php foreach($obat as $row){ ?>
+                                                    <tr>
+                                                        <td><?php echo $row->Jenis_obat ?></td>
+                                                        <td><?php echo $row->Nama_obat ?></td>
+                                                        <td><?php echo $row->stok ?></td>
+                                                        <td><?php echo $row->kadaluwarsa ?></td>
+                                                        <td><?php echo $row->hrg_obat ?></td>
+                                                       
+                                                    </tr>
+                                                <?php } ?>
+                                                </tbody>
+                                            </table>
+                                            
+                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light" data-dismiss="modal">Tutup</button>
+                                             
+                                            </div>
+                                      
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
                                     </div>
+                                </div>
                                     <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Detail Terapi </label>
                                         <div class="col-sm-10">

@@ -160,7 +160,7 @@
                             <div class="card-body">
                                 <h4 class="header-title">Daftar Pasien</h4>
 
-                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap">
+                             <table id="basic-datatable" class="table table-striped dt-responsive nowrap">
                                     <thead>
                                         <tr>
                                             <th>Nama Pasien</th>

@@ -171,7 +171,7 @@
                                             <input class="form-control" type="date" name="tanggal" max="<?php echo date('Y-m-d'); ?>">
                                         </div>
                                     </div>                                
-                                    <div class="form-group row">
+<!--                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Tindakan</label>
 
                                         <div class="col-sm-10">
@@ -180,11 +180,17 @@
                                           <?php } ?>
                                         </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Total Biaya (Rp.)</label>
+                                        <label class="col-sm-2 col-form-label">Biaya Konsultasi (Rp.)</label>
                                         <div class="col-sm-10">
                                          <input type="text" name="total" class="form-control" id="dengan-rupiah"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Biaya Obat (Rp.)</label>
+                                        <div class="col-sm-10">
+                                         <input type="text" name="total2" class="form-control" id="dengan-rupiah"/>
                                         </div>
                                     </div>
                                     <div id="wrapper">

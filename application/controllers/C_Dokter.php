@@ -32,7 +32,8 @@ class C_Dokter extends CI_Controller {
 		$this->load->view('dokter/edit_rekam',$data);	
 	}
 	public function addRekam(){
-		$this->load->view('dokter/tambah_rekam');	
+		$data['obat'] = $this->yeah->listObat();
+		$this->load->view('dokter/tambah_rekam',$data);	
 	}
 	public function tambah_rekam(){
 		$data = array(

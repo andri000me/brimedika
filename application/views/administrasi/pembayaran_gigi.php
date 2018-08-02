@@ -157,7 +157,7 @@
                                 <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Pasien </label>
                                         <div class="col-sm-10">
-                                           <select class=" js-example-basic-single form-control" name="idPasien">
+                                           <select class=" js-example-basic-single form-control" name="idPasien" required>
                                                 <option  disabled selected>---- Pilih Pasien ------</option>
                                                 <?php foreach ($dftr as $row) { ?>
                                                     <option  value="<?php echo $row->idPasien ?>"><?php echo $row->namaPasien ?></option>
@@ -168,10 +168,10 @@
                                      <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Tanggal Transaksi</label>
                                         <div class="col-sm-10">
-                                            <input class="form-control" type="date" name="tanggal" max="<?php echo date('Y-m-d'); ?>">
+                                            <input class="form-control" type="date" name="tanggal" max="<?php echo date('Y-m-d'); ?>" required>
                                         </div>
                                     </div>                                
-                                    <div class="form-group row">
+<!--                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Tindakan</label>
 
                                         <div class="col-sm-10">
@@ -180,13 +180,18 @@
                                           <?php } ?>
                                         </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Total Biaya (Rp.)</label>
+                                    </div> -->
+                                  <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Biaya Konsultasi (Rp.)</label>
                                         <div class="col-sm-10">
-                                         <input type="text" name="total" class="form-control" id="dengan-rupiah"/>
+                                         <input type="text" name="total" class="form-control" id="dengan-rupiah" required/>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Biaya Obat (Rp.)</label>
+                                        <div class="col-sm-10">
+                                         <input type="text" name="total2" class="form-control" id="dengan-rupiah" required />
+                                        </div>
                                     <div id="wrapper">
                                           <button type="submit" class="btn btn-block btn-primary">Tambah Transaksi</button>
                                         </div>
