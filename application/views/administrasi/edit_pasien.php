@@ -64,7 +64,7 @@
                     <?php //var_dump($_SESSION); ?>
                     <ul class="list-inline menu-left mb-0">
                         <li class="float-left">
-                            <a href="index.html" class="logo">
+                            <a href="<?php echo base_url();?>C_Administrasi" class="logo">
                                 <span class="logo-lg">
                                     <img src="<?php echo base_url();?>assets/Horizontal/dist/assets/images/favicon.ico" alt="" height="18"> <b style="color:white">BRIMEDIKA</b>
                                 </span>
@@ -90,9 +90,13 @@
                                 <a href="<?php echo base_url();?>C_Administrasi">
                                     <i class="fe-airplay"></i>Dashboard</a>
                             </li>
-                        <li class="has-submenu">
+                          <li class="has-submenu">
                                 <a href="<?php echo base_url();?>C_Administrasi/pasien">
                                     <i class="fe-users"></i>Pasien</a>
+                            </li>
+                           <li class="has-submenu">
+                                <a href="<?php echo base_url();?>C_Administrasi/daftar_berobat">
+                                    <i class="fe-user-plus"></i>Daftar Berobat</a>
                             </li>
                             <li class="has-submenu">
                                 <a href="index.html">
@@ -153,7 +157,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Nama </label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="nama" class="form-control" value="<?php echo $row->nmPasien ?>">
+                                            <input type="text" name="nama" class="form-control" value="<?php echo $row->namaPasien ?>">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -168,11 +172,11 @@
                                   
                                      <div class="col-md-6">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio1" name="jeniskel" class="custom-control-input" value="pria" <?php if($row->gender == 'pria'){ echo 'checked';} ?>>
+                                                <input type="radio" id="customRadio1" name="jeniskel" class="custom-control-input" value="pria" <?php if($row->jenisKelamin == 'pria'){ echo 'checked';} ?>>
                                                 <label class="custom-control-label" for="customRadio1">Pria</label>
                                             </div>
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio2" name="jeniskel" class="custom-control-input" value="wanita" <?php if($row->gender == 'wanita'){ echo 'checked';} ?>>
+                                                <input type="radio" id="customRadio2" name="jeniskel" class="custom-control-input" value="wanita" <?php if($row->jenisKelamin == 'wanita'){ echo 'checked';} ?>>
                                                 <label class="custom-control-label" for="customRadio2">Wanita</label>
                                             </div>
                                         </div>
@@ -183,18 +187,7 @@
                                             <input type="text" class="form-control" name="alamat" value="<?php echo $row->alamat ?>" rows="5">
                                         </div>
                                     </div>
-                                   <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Tanggal Lahir</label>
-                                        <div class="col-sm-10">
-                                            <input class="form-control" type="date" name="tanggal" max="<?php echo date('Y-m-d');  ?>" value="<?php echo $row->tglLahir ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Tempat Lahir </label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="tempat" class="form-control" value="<?php echo $row->tempatLahir ?>" size="3">
-                                        </div>
-                                    </div>
+
                                    <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Pekerjaan </label>
                                         <div class="col-sm-10">

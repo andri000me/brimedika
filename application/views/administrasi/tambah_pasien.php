@@ -64,7 +64,7 @@
                     <?php //var_dump($_SESSION); ?>
                     <ul class="list-inline menu-left mb-0">
                         <li class="float-left">
-                            <a href="index.html" class="logo">
+                            <a href="<?php echo base_url();?>C_Administrasi" class="logo">
                                 <span class="logo-lg">
                                     <img src="<?php echo base_url();?>assets/Horizontal/dist/assets/images/favicon.ico" alt="" height="18"> <b style="color:white">BRIMEDIKA</b>
                                 </span>
@@ -93,6 +93,10 @@
                         <li class="has-submenu">
                                 <a href="<?php echo base_url();?>C_Administrasi/pasien">
                                     <i class="fe-users"></i>Pasien</a>
+                            </li>
+                                                       <li class="has-submenu">
+                                <a href="<?php echo base_url();?>C_Administrasi/daftar_berobat">
+                                    <i class="fe-user-plus"></i>Daftar Berobat</a>
                             </li>
                             <li class="has-submenu">
                                 <a href="index.html">
@@ -181,18 +185,7 @@
                                             <textarea class="form-control" name="alamat"  rows="5"></textarea>
                                         </div>
                                     </div>
-                                   <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Tanggal Lahir</label>
-                                        <div class="col-sm-10">
-                                            <input class="form-control" type="date" name="tanggal" max="<?php echo date('Y-m-d'); ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Tempat Lahir </label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="tempat" class="form-control" placeholder="Masukan Tempat Lahir Pasien.." size="3">
-                                        </div>
-                                    </div>
+
                                    <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Pekerjaan </label>
                                         <div class="col-sm-10">

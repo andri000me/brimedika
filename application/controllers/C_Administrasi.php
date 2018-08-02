@@ -21,7 +21,7 @@ class C_Administrasi extends CI_Controller {
 		$this->load->view('administrasi/home');
 	}
 
-	public function Pasien(){
+	public function pasien(){
 		$data['pasien'] = $this->yeah->listPasien();
 		$this->load->view('administrasi/pasien',$data);	
 	}
@@ -33,28 +33,19 @@ class C_Administrasi extends CI_Controller {
 		$data['pasien'] = $this->yeah->geteditData('pasien',$id,'idPasien')->result();
 		$this->load->view('administrasi/edit_pasien',$data);	
 	}
-	public function editRekam(){
-		$id = $this->uri->segment(3);
-		$data['rekam'] = $this->yeah->geteditData('rekammedis',$id,'noRM')->result();
-		$this->load->view('administrasi/edit_rekam',$data);	
-	}
-	public function addRekam(){
-		$this->load->view('administrasi/tambah_rekam');	
-	}
+
 
 
 	public function tambah(){
 		$data = array(
-		'nmPasien'=> html_escape($this->input->post('nama')),
+		'namaPasien'=> html_escape($this->input->post('nama')),
 		'umur' => html_escape($this->input->post('umur')),
-		'gender' => html_escape($this->input->post('jeniskel')),
+		'jenisKelamin' => html_escape($this->input->post('jeniskel')),
 		'alamat' => html_escape($this->input->post('alamat')),
 		'noTelp' => html_escape($this->input->post('nomor')),
-		'tempatLahir' =>  html_escape($this->input->post('tempat')),
-		'tglLahir' =>  html_escape($this->input->post('tanggal')),
 		'pekerjaan' =>  html_escape($this->input->post('pekerjaan')),
 		);
-		if($this->yeah->editData($data,'pasien',$id,'idPasien')){
+		if($this->yeah->addData($data,'pasien')){
 			$message = array('message'=>'Data Pasien berhasil ditambah', 'class'=>'alert alert-primary');
 			$this->session->set_flashdata('item', $message);
 		}else{
@@ -68,17 +59,15 @@ class C_Administrasi extends CI_Controller {
 	public function prosesEditP(){
 
 		$data = array(
-		'nmPasien'=> html_escape($this->input->post('nama')),
+		'namaPasien'=> html_escape($this->input->post('nama')),
 		'umur' => html_escape($this->input->post('umur')),
-		'gender' => html_escape($this->input->post('jeniskel')),
+		'jenisKelamin' => html_escape($this->input->post('jeniskel')),
 		'alamat' => html_escape($this->input->post('alamat')),
 		'noTelp' => html_escape($this->input->post('nomor')),
-		'tempatLahir' =>  html_escape($this->input->post('tempat')),
-		'tglLahir' =>  html_escape($this->input->post('tanggal')),
 		'pekerjaan' =>  html_escape($this->input->post('pekerjaan')),
 		);
 		$id = $this->input->post('idp');
-		if($this->yeah->addData($data,'pasien')){
+		if($this->yeah->editData($data,'pasien',$id,'idPasien')){
 			$message = array('message'=>'Data Pasien berhasil diubah', 'class'=>'alert alert-primary');
 			$this->session->set_flashdata('item', $message);
 		}else{
@@ -88,7 +77,129 @@ class C_Administrasi extends CI_Controller {
 		redirect('C_Administrasi/pasien');
 
 	}
-	public function prosesEditR(){
+
+
+	public function hapusPasien(){
+		$id=$this->uri->segment(3);
+		$this->db->where('idPasien',$id);
+		if(	$this->db->delete('pasien')){
+			$message = array('message'=>'Data Pasien berhasil dihapus', 'class'=>'alert alert-warning');
+			$this->session->set_flashdata('item', $message);
+		}else{
+			$message = array('message'=>'Data Pasien gagal dihapus', 'class'=>'alert alert-danger');
+			$this->session->set_flashdata('item', $message);			
+		}
+		redirect('C_Administrasi/pasien');
+	}
+
+	public function daftar_berobat(){
+		//$data['pasien'] = $this->yeah->listPasien();
+		$this->load->view('administrasi/daftar_berobat');	
+	}
+
+	public function poliUmum(){
+		$data['pasien'] = $this->yeah->listPasienUmum();
+		$data['dftr'] = $this->yeah->daftarPasien();
+		$this->load->view('administrasi/umum',$data);	
+	}
+	public function poliGigi(){
+		$data['pasien'] = $this->yeah->listPasienGigi();
+		$data['dftr'] = $this->yeah->daftarPasien();
+		$this->load->view('administrasi/gigi',$data);	
+	}
+
+	public function tambahGigi(){
+		$data = array(
+		'idPasien'=> html_escape($this->input->post('idPasien')),
+		'tglBerobat' => html_escape($this->input->post('tanggal')),
+		'kdPoli' => 2
+		);
+		if($this->yeah->addData($data,'daftar_berobat')){
+			$message = array('message'=>'Data Pasien berhasil ditambah', 'class'=>'alert alert-primary');
+			$this->session->set_flashdata('item', $message);
+		}else{
+			$message = array('message'=>'Data Pasien gagal ditambahkan', 'class'=>'alert alert-danger');
+			$this->session->set_flashdata('item', $message);			
+		}
+		redirect('C_Administrasi/poliGigi');
+
+	}
+	public function tambahUmum(){
+		$data = array(
+		'idPasien'=> html_escape($this->input->post('idPasien')),
+		'tglBerobat' => html_escape($this->input->post('tanggal')),
+		'kdPoli' => 1
+		);
+		if($this->yeah->addData($data,'daftar_berobat')){
+			$message = array('message'=>'Data Pasien berhasil ditambah', 'class'=>'alert alert-primary');
+			$this->session->set_flashdata('item', $message);
+		}else{
+			$message = array('message'=>'Data Pasien gagal ditambahkan', 'class'=>'alert alert-danger');
+			$this->session->set_flashdata('item', $message);			
+		}
+		redirect('C_Administrasi/poliUmum');
+
+	}
+	public function hapusBerobat(){
+		$id=$this->uri->segment(3);
+		$this->db->where('idBerobat',$id);
+	
+		if(	$this->db->delete('daftar_berobat')){
+			$message = array('message'=>'Data Pasien berhasil dihapus', 'class'=>'alert alert-warning');
+			$this->session->set_flashdata('item', $message);
+		}else{
+			$message = array('message'=>'Data Pasien gagal ditambahkan', 'class'=>'alert alert-danger');
+			$this->session->set_flashdata('item', $message);			
+		}
+		if($this->uri->segment(4) == 1){
+		redirect('C_Administrasi/poliUmum');
+		}else{
+		redirect('C_Administrasi/poliGigi');
+		}
+
+	}
+
+	/*	public function hapusRekam(){
+		$id = $this->uri->segment(3);
+		$id2 = $this->uri->segment(4);
+		$this->db->where('noRM',$id);
+		$this->db->delete('rekammedis');
+		redirect('C_Administrasi/rekamMedis/'.$id2);
+	}
+public function rekamMedis(){
+		$idpasien = $this->uri->segment(3);
+		$data['rekam'] = $this->yeah->rekamMedis($idpasien);
+		$this->load->view('administrasi/rekammedis',$data);	
+
+	}
+		public function editRekam(){
+		$id = $this->uri->segment(3);
+		$data['rekam'] = $this->yeah->geteditData('rekammedis',$id,'noRM')->result();
+		$this->load->view('administrasi/edit_rekam',$data);	
+	}
+	public function addRekam(){
+		$this->load->view('administrasi/tambah_rekam');	
+	}
+	public function tambah_rekam(){
+		$data = array(
+		'tglPemeriksaan'=> html_escape($this->input->post('tanggal')),
+		'anamnesa' => html_escape($this->input->post('ana')),
+		'diagnosa' => html_escape($this->input->post('diagnosa')),
+		'terapi' => html_escape($this->input->post('terapi')),
+		'ketTerapi' => html_escape($this->input->post('det')),
+		'idPasien' =>  html_escape($this->input->post('id')),
+		);
+		if($this->yeah->addData($data,'rekammedis')){
+			$message = array('message'=>'Data Rekam Medis berhasil ditambah', 'class'=>'alert alert-primary');
+			$this->session->set_flashdata('item', $message);
+		}else{
+			$message = array('message'=>'Data Rekam Medis gagal ditambahkan', 'class'=>'alert alert-danger');
+			$this->session->set_flashdata('item', $message);			
+		}
+		redirect('C_Administrasi/rekamMedis/'.html_escape($this->input->post('id')));
+
+	} 
+		public function prosesEditR(){
 
 		$data = array(
 		'tglPemeriksaan'=> html_escape($this->input->post('tanggal')),
@@ -109,44 +220,5 @@ class C_Administrasi extends CI_Controller {
 		}
 		redirect('C_Administrasi/rekamMedis/'.$id2);
 
-	}
-
-	public function hapusPasien(){
-		$id=$this->uri->segment(3);
-		$this->db->where('idPasien',$id);
-		$this->db->delete('pasien');
-		redirect('C_Administrasi/pasien');
-	}
-	public function hapusRekam(){
-		$id = $this->uri->segment(3);
-		$id2 = $this->uri->segment(4);
-		$this->db->where('noRM',$id);
-		$this->db->delete('rekammedis');
-		redirect('C_Administrasi/rekamMedis/'.$id2);
-	}
-	public function rekamMedis(){
-		$idpasien = $this->uri->segment(3);
-		$data['rekam'] = $this->yeah->rekamMedis($idpasien);
-		$this->load->view('administrasi/rekammedis',$data);	
-
-	}
-	public function tambah_rekam(){
-		$data = array(
-		'tglPemeriksaan'=> html_escape($this->input->post('tanggal')),
-		'anamnesa' => html_escape($this->input->post('ana')),
-		'diagnosa' => html_escape($this->input->post('diagnosa')),
-		'terapi' => html_escape($this->input->post('terapi')),
-		'ketTerapi' => html_escape($this->input->post('det')),
-		'idPasien' =>  html_escape($this->input->post('id')),
-		);
-		if($this->yeah->addData($data,'rekammedis')){
-			$message = array('message'=>'Data Rekam Medis berhasil ditambah', 'class'=>'alert alert-primary');
-			$this->session->set_flashdata('item', $message);
-		}else{
-			$message = array('message'=>'Data Rekam Medis gagal ditambahkan', 'class'=>'alert alert-danger');
-			$this->session->set_flashdata('item', $message);			
-		}
-		redirect('C_Administrasi/rekamMedis/'.html_escape($this->input->post('id')));
-
-	}
+	}*/
 }

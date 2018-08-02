@@ -44,16 +44,16 @@ class C_login extends CI_Controller {
         redirect('C_Dokter');
         }else{
         # login administrasi
-        $query2 =  $this->db->where('username', $username)->where('password', $password)->get('perawat');
+        $query2 =  $this->db->where('namaPetAdministrasi', $username)->where('password', $password)->get('petugasadministrasi');
         if($query2->num_rows() > 0 ){
         $row = $query2->row();
         $data = array(
                 'logged' => 'y',
-                'id_perawat' => $row->idperawat,
-                'username' => $row->username,
-                'nama' => $row->nama,
-                'jabatan' => $row->level,
-                'info' => $row->id_perawat,
+                'id_perawat' => $row->idPetAdministrasi,
+                'username' => $row->namaPetAdministrasi,
+                'nama' => $row->namaPetAdministrasi,
+                'jabatan' => $row->hakAkses,
+                'info' => $row->idPetAdministrasi,
                 'level' => 'Administrasi'
             );
          $this->session->set_userdata($data);

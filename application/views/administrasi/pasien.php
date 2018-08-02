@@ -64,7 +64,7 @@
                     <?php //var_dump($_SESSION); ?>
                     <ul class="list-inline menu-left mb-0">
                         <li class="float-left">
-                            <a href="index.html" class="logo">
+                            <a href="<?php echo base_url();?>C_Administrasi" class="logo">
                                 <span class="logo-lg">
                                     <img src="<?php echo base_url();?>assets/Horizontal/dist/assets/images/favicon.ico" alt="" height="18"> <b style="color:white">BRIMEDIKA</b>
                                 </span>
@@ -93,6 +93,10 @@
                         <li class="has-submenu">
                                 <a href="<?php echo base_url();?>C_Administrasi/pasien">
                                     <i class="fe-users"></i>Pasien</a>
+                            </li>
+                                                       <li class="has-submenu">
+                                <a href="<?php echo base_url();?>C_Administrasi/daftar_berobat">
+                                    <i class="fe-user-plus"></i>Daftar Berobat</a>
                             </li>
                             <li class="has-submenu">
                                 <a href="index.html">
@@ -164,7 +168,6 @@
                                             <th>Jenis Kelamin</th>
                                             <th>Alamat</th>
                                             <th>No Telp</th>
-                                            <th>Tempat, Tgl Lahir</th>
                                             <th>Pekerjaan</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -174,14 +177,13 @@
                                     <tbody>
                                         <?php foreach($pasien as $row){ ?>
                                         <tr>
-                                            <td><?php echo $row->nmPasien ?></td>
+                                            <td><?php echo $row->namaPasien ?></td>
                                             <td><?php echo $row->umur ?></td>
-                                            <td><?php echo strtoupper($row->gender) ?></td>
+                                            <td><?php echo strtoupper($row->jenisKelamin) ?></td>
                                             <td><?php echo $row->alamat ?></td>
                                             <td><?php echo $row->noTelp ?></td>
-                                            <td><?php echo $row->tempatLahir.', '.$row->tglLahir ?></td>
                                             <td><?php echo $row->pekerjaan ?></td>
-                                            <td><a href="<?php echo base_url();?>C_Administrasi/rekamMedis/<?php echo $row->idPasien ?>" class="btn btn-primary" data-toggle="tooltip" title="Rekam Medis"><i class="fe-folder"></i></button> <a href="javascript: void(0);" class="dropdown-toggle arrow-none btn btn-light btn-sm" data-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
+                                            <td> <a href="javascript: void(0);" class="dropdown-toggle arrow-none btn btn-light btn-sm" data-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             <a class="dropdown-item" href="<?php echo base_url();?>C_Administrasi/editPasien/<?php echo $row->idPasien ?>"><i class="mdi mdi-pencil mr-1 text-muted"></i>Edit Pasien</a>
                                                             <a class="dropdown-item" href="<?php echo base_url();?>C_Administrasi/hapusPasien/<?php echo $row->idPasien ?>"  onclick="return confirm('Anda yakin akan menghapus data pasien berikut?');"><i class="mdi mdi-delete mr-1 text-muted"></i>Hapus Pasien</a>
@@ -194,7 +196,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
                 <!-- end row -->
 
                 
