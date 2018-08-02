@@ -33,5 +33,13 @@ class DokterM extends CI_Model {
 
 
 	}
+
+	public function listObat()
+	{
+
+		$data = $this->db->query("SELECT * FROM obat");
+
+		return $data->result();
+	}
 }
 

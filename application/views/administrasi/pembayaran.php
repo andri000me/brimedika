@@ -94,8 +94,8 @@
                                 <a href="<?php echo base_url();?>C_Administrasi/daftar_berobat">
                                     <i class="fe-user-plus"></i>Daftar Berobat</a>
                             </li>
-                            <li class="has-submenu">
-                                <a href="<?php echo base_url();?>C_Administrasi/pembayaran">
+                            <li class="<?php echo base_url();?>C_Administrasi/pembayaran">
+                                <a href="index.html">
                                     <i class="fe-dollar-sign"></i>Pembayaran</a>
                             </li>
 
@@ -127,10 +127,21 @@
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="<?php echo base_url() ?>C_Administrasis">Administrasi</a></li>
-                                    <li class="breadcrumb-item active">Poli</li>
+                                    <li class="breadcrumb-item active">Pembayaran</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Daftar Poli</h4>
+                            <h4 class="page-title">Pembayaran Berobat Poli</h4>
+                            <?php if($this->session->flashdata('item')){
+                                $message = $this->session->flashdata('item');
+                            ?>
+                            <div class="<?php echo $message['class']; ?>" role="alert">
+                               
+                                <?php echo $message['message']; ?>
+                            </div>              
+                            <?php }?>
+                         
+                            <br>
+                            <br>
                         </div>
                     </div>
                 </div>     
@@ -139,8 +150,8 @@
                 <div class="row" style="text-align: center;>
                   <div class="card">
                             <div class="card-body">
-                                <a href="<?php echo base_url();?>C_Administrasi/poliUmum" class="btn btn-lg btn-outline-warning col-lg-3">Umum</a>
-                                <a href="<?php echo base_url();?>C_Administrasi/poliGigi" class="btn btn-lg btn-outline-info col-lg-3">Gigi</a>
+                                <a href="<?php echo base_url();?>C_Administrasi/pembayaranUmum" class="btn btn-lg btn-outline-warning col-lg-3">Umum</a>
+                                <a href="<?php echo base_url();?>C_Administrasi/pembayaranGigi" class="btn btn-lg btn-outline-info col-lg-3">Gigi</a>
                 </div>
                 </div>
                 </div>

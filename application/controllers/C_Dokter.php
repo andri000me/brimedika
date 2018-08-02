@@ -83,4 +83,8 @@ class C_Dokter extends CI_Controller {
 		$this->db->delete('rekammedis');
 		redirect('C_Dokter/rekamMedis/'.$id2);
 	}
+	public function Obat(){
+		$data['obat'] = $this->yeah->listObat();
+		$this->load->view('dokter/obat',$data);	
+	}
 }

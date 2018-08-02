@@ -95,7 +95,7 @@
                                     <i class="fe-user-plus"></i>Daftar Berobat</a>
                             </li>
                             <li class="has-submenu">
-                                <a href="index.html">
+                                <a href="<?php echo base_url();?>C_Administrasi/pembayaran">
                                     <i class="fe-dollar-sign"></i>Pembayaran</a>
                             </li>
 
@@ -127,8 +127,9 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="<?php echo base_url() ?>C_Administrasis">Administrasi</a></li>
-                                    <li class="breadcrumb-item active">Poli</li>
+                                    <li class="breadcrumb-item"><a href="<?php echo base_url() ?>C_Administrasi">Administrasi</a></li>
+                                    <li class="breadcrumb-item active"><a href="<?php echo base_url() ?>C_Administrasi/daftar_berobat">Poli</a></li>
+                                    <li class="breadcrumb-item active">Umum</li>
                                 </ol>
                             </div>
                             <h4 class="page-title">Poli Umum</h4>

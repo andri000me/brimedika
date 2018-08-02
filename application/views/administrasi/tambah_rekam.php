@@ -95,7 +95,7 @@
                                     <i class="fe-users"></i>Pasien</a>
                             </li>
                             <li class="has-submenu">
-                                <a href="index.html">
+                                <a href="<?php echo base_url();?>C_Administrasi/pembayaran">
                                     <i class="fe-dollar-sign"></i>Pembayaran</a>
                             </li>
 

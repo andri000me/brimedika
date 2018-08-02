@@ -25,6 +25,7 @@ class C_Administrasi extends CI_Controller {
 		$data['pasien'] = $this->yeah->listPasien();
 		$this->load->view('administrasi/pasien',$data);	
 	}
+
 	public function addPasien(){
 		$this->load->view('administrasi/tambah_pasien');	
 	}
@@ -158,6 +159,56 @@ class C_Administrasi extends CI_Controller {
 		}
 
 	}
+	public function pembayaran(){
+		//$data['pasien'] = $this->yeah->listPasien();
+		$this->load->view('administrasi/pembayaran');	
+	}
+	public function pembayaranUmum(){
+		$data['tindakan'] = $this->yeah->listTindakanUmum();
+		$data['dftr'] = $this->yeah->daftarPasienUmum();
+		$this->load->view('administrasi/pembayaran_umum',$data);	
+	}
+	public function pembayaranGigi(){
+		$data['tindakan'] = $this->yeah->listTindakanGigi();
+		$data['dftr'] = $this->yeah->daftarPasienGigi();
+		$this->load->view('administrasi/pembayaran_gigi',$data);	
+	}
+	public function tambahPembayaranUmum(){
+		$data = array(
+		'idPasien'=> html_escape($this->input->post('idPasien')),
+		'tglTransaksi' => html_escape($this->input->post('tanggal')),
+		'totalTransaksi' => html_escape($this->input->post('total')),
+		'idPetAdministrasi' => $this->session->userdata('id_perawat')
+		);
+		if($this->yeah->addData($data,'transaksi')){
+			$message = array('message'=>'Data Transaksi berhasil ditambah', 'class'=>'alert alert-primary');
+			$this->session->set_flashdata('item', $message);
+		}else{
+			$message = array('message'=>'Data Transaksi gagal ditambahkan', 'class'=>'alert alert-danger');
+			$this->session->set_flashdata('item', $message);			
+		}
+		redirect('C_Administrasi/pembayaran');
+
+	}
+	public function tambahPembayaranGigi(){
+		$data = array(
+		'idPasien'=> html_escape($this->input->post('idPasien')),
+		'tglTransaksi' => html_escape($this->input->post('tanggal')),
+		'totalTransaksi' => html_escape($this->input->post('total')),
+		'idPetAdministrasi' => $this->session->userdata('id_perawat')
+		);
+		if($this->yeah->addData($data,'transaksi')){
+			$message = array('message'=>'Data Transaksi berhasil ditambah', 'class'=>'alert alert-primary');
+			$this->session->set_flashdata('item', $message);
+		}else{
+			$message = array('message'=>'Data Transaksi gagal ditambahkan', 'class'=>'alert alert-danger');
+			$this->session->set_flashdata('item', $message);			
+		}
+		redirect('C_Administrasi/pembayaran');
+
+	}
+
+
 
 	/*	public function hapusRekam(){
 		$id = $this->uri->segment(3);

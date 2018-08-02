@@ -95,9 +95,10 @@
                                     <i class="fe-users"></i>Pasien</a>
                             </li>
                             <li class="has-submenu">
-                                <a href="index.html">
-                                    <i class="fe-dollar-sign"></i>Pembayaran</a>
+                                <a href="<?php echo base_url();?>C_Dokter/obat">
+                                    <i class="fe-link"></i>Obat</a>
                             </li>
+
 
                   
                             

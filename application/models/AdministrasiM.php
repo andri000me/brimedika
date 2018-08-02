@@ -19,9 +19,9 @@ class AdministrasiM extends CI_Model {
     public function daftarPasien()
 	{
 		$data = $this->db->query("SELECT t1.*
-FROM pasien t1
-LEFT JOIN daftar_berobat t2 ON t2.idPasien = t1.idPasien
-WHERE t2.idPasien IS NULL");
+		FROM pasien t1
+		LEFT JOIN daftar_berobat t2 ON t2.idPasien = t1.idPasien
+		WHERE t2.idPasien IS NULL");
 
 		return $data->result();
 	}
@@ -52,6 +52,32 @@ WHERE t2.idPasien IS NULL");
 		return $this->db->update($table,$data);
 
 
+	}
+	    public function daftarPasienUmum()
+	{
+		$data = $this->db->query("SELECT * FROM daftar_berobat join pasien using(idPasien) WHERE kdPoli ='01'");
+
+		return $data->result();
+	}
+	public function listTindakanUmum()
+	{
+		
+		$data = $this->db->query("SELECT * FROM tindakan WHERE kdPoli ='01'");
+
+		return $data->result();
+	}
+	    public function daftarPasienGigi()
+	{
+		$data = $this->db->query("SELECT * FROM daftar_berobat join pasien using(idPasien) WHERE kdPoli ='02'");
+
+		return $data->result();
+	}
+	public function listTindakanGigi()
+	{
+		
+		$data = $this->db->query("SELECT * FROM tindakan WHERE kdPoli ='02'");
+
+		return $data->result();
 	}
 }
 

@@ -120,29 +120,81 @@
         <div class="wrapper">
             <div class="container-fluid">
 
-                <!-- start page title -->
+    
+                               <!-- start page title -->
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="<?php echo base_url() ?>C_Administrasis">Administrasi</a></li>
-                                    <li class="breadcrumb-item active">Poli</li>
+                                    <li class="breadcrumb-item"><a href="<?php echo base_url() ?>C_Administrasi">Administrasi</a></li>
+                                    <li class="breadcrumb-item active"><a href="<?php echo base_url() ?>C_Administrasi/pembayaran">Pembayaran</a></li>
+                                    <li class="breadcrumb-item active">Umum</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Daftar Poli</h4>
+                            <h4 class="page-title">Poli Umum</h4>
+                            <?php if($this->session->flashdata('item')){
+                                $message = $this->session->flashdata('item');
+                            ?>
+                            <div class="<?php echo $message['class']; ?>" role="alert">
+                               
+                                <?php echo $message['message']; ?>
+                            </div>              
+                            <?php }?>
+                            <br>
+                            <br>
                         </div>
                     </div>
                 </div>     
                 <!-- end page title --> 
 
-                <div class="row" style="text-align: center;>
-                  <div class="card">
+                <div class="row" >
+                     <div class="col-12">
+                        <div class="card">
                             <div class="card-body">
-                                <a href="<?php echo base_url();?>C_Administrasi/poliUmum" class="btn btn-lg btn-outline-warning col-lg-3">Umum</a>
-                                <a href="<?php echo base_url();?>C_Administrasi/poliGigi" class="btn btn-lg btn-outline-info col-lg-3">Gigi</a>
-                </div>
-                </div>
+                                <h4 class="header-title">Pembayaran Umum</h4>
+                            <form class="form-horizontal" method="post" action="<?php echo base_url('C_Administrasi/tambahPembayaranUmum') ?>">
+                                <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Pasien </label>
+                                        <div class="col-sm-10">
+                                           <select class=" js-example-basic-single form-control" name="idPasien">
+                                                <option  disabled selected>---- Pilih Pasien ------</option>
+                                                <?php foreach ($dftr as $row) { ?>
+                                                    <option  value="<?php echo $row->idPasien ?>"><?php echo $row->namaPasien ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Tanggal Transaksi</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" type="date" name="tanggal" max="<?php echo date('Y-m-d'); ?>">
+                                        </div>
+                                    </div>                                
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Tindakan</label>
+
+                                        <div class="col-sm-10">
+                                            <?php foreach($tindakan as $row){ ?>
+                                          <input onchange="change_checkbox(this);" id="xxx" type="checkbox" name="tindakan[]" value="<?php echo $row->tarif ?>"><label><?php echo $row->namaTindakan ?></label><br/>
+                                          <?php } ?>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Total Biaya (Rp.)</label>
+                                        <div class="col-sm-10">
+                                         <input type="text" name="total" class="form-control" id="dengan-rupiah"/>
+                                        </div>
+                                    </div>
+                                    <div id="wrapper">
+                                          <button type="submit" class="btn btn-block btn-primary">Tambah Transaksi</button>
+                                        </div>
+                                                    
+                                </form>
+                                </div>
+                            </div>
+                        </div>
                 </div>
                 <!-- end row -->
 
@@ -179,6 +231,48 @@
         <script src="<?php echo base_url();?>assets/Horizontal/dist/js/vendor/jquery.knob.min.js"></script>
 
         <script src="<?php echo base_url();?>assets/Horizontal/dist/js/pages/dashboard.init.js"></script>
+<script type="text/javascript">
 
+function change_checkbox(el){
+  if(el.checked){
+    var tes = $("#dengan-rupiah").val();
+    //console.log(tes);
+    if(tes === undefined){
+    tes = 0;
+    }
+   var  biayal = parseInt(tes);
+   if(isNaN(biayal)){
+    biayal = 0;
+   }
+    var biayab = parseFloat(el.value);
+    //console.log(biayal);
+    //console.log(biayalb;
+    var biaya = biayab + biayal;
+    $("#dengan-rupiah").val(biaya);
+    //console.log(biaya)
+
+  }else{
+    var tes = $("#dengan-rupiah").val();
+    //console.log(tes);
+    if(tes === undefined){
+    tes = 0;
+    }
+   var  biayal = parseInt(tes);
+   if(isNaN(biayal)){
+    biayal = 0;
+   }
+    var biayab = parseFloat(el.value);
+    console.log(biayal);
+    //console.log(biayalb;
+    var biaya = biayal - biayab;
+    $("#dengan-rupiah").val(biaya);
+    console.log(biaya)
+  }
+}
+
+ /* Tanpa Rupiah */
+
+
+</script>
     </body>
 </html>

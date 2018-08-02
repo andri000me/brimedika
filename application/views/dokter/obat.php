@@ -11,6 +11,10 @@
         <link rel="shortcut icon" href="<?php echo base_url();?>assets/Horizontal/dist/assets/images/favicon.ico">
 
         <!-- App css -->
+        <link href="<?php echo base_url();?>assets/Horizontal/dist/css/vendor/dataTables.bootstrap4.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url();?>assets/Horizontal/dist/css/vendor/responsive.bootstrap4.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url();?>assets/Horizontal/dist/css/vendor/buttons.bootstrap4.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url();?>assets/Horizontal/dist/css/vendor/select.bootstrap4.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url();?>assets/Horizontal/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url();?>assets/Horizontal/dist/css/icons.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url();?>assets/Horizontal/dist/css/app.min.css" rel="stylesheet" type="text/css" />
@@ -60,7 +64,7 @@
                     <?php //var_dump($_SESSION); ?>
                     <ul class="list-inline menu-left mb-0">
                         <li class="float-left">
-                            <a href="<?php echo base_url();?>C_Administrasi" class="logo">
+                            <a href="index.html" class="logo">
                                 <span class="logo-lg">
                                     <img src="<?php echo base_url();?>assets/Horizontal/dist/assets/images/favicon.ico" alt="" height="18"> <b style="color:white">BRIMEDIKA</b>
                                 </span>
@@ -91,13 +95,10 @@
                                     <i class="fe-users"></i>Pasien</a>
                             </li>
                             <li class="has-submenu">
-                                <a href="<?php echo base_url();?>C_Administrasi/daftar_berobat">
-                                    <i class="fe-user-plus"></i>Daftar Berobat</a>
+                                <a href="<?php echo base_url();?>C_Dokter/obat">
+                                    <i class="fe-link"></i>Obat</a>
                             </li>
-                            <li class="has-submenu">
-                                <a href="<?php echo base_url();?>C_Administrasi/pembayaran">
-                                    <i class="fe-dollar-sign"></i>Pembayaran</a>
-                            </li>
+
 
                   
                             
@@ -126,28 +127,60 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="<?php echo base_url() ?>C_Administrasis">Administrasi</a></li>
-                                    <li class="breadcrumb-item active">Poli</li>
+                                     <li class="breadcrumb-item"><a href="<?php echo base_url() ?>C_Administrasi">Administrasi</a></li>
+                                    <li class="breadcrumb-item active">Pasien</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Daftar Poli</h4>
+                            <h4 class="page-title">Halaman Pasien</h4>
+                      
+                         
+                            <br>
+                            <br>
+
                         </div>
                     </div>
                 </div>     
                 <!-- end page title --> 
 
-                <div class="row" style="text-align: center;>
-                  <div class="card">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
                             <div class="card-body">
-                                <a href="<?php echo base_url();?>C_Administrasi/poliUmum" class="btn btn-lg btn-outline-warning col-lg-3">Umum</a>
-                                <a href="<?php echo base_url();?>C_Administrasi/poliGigi" class="btn btn-lg btn-outline-info col-lg-3">Gigi</a>
-                </div>
-                </div>
+                                <h4 class="header-title">Daftar Pasien</h4>
+
+                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>Jenis Obat</th>
+                                            <th>Nama Obat</th>
+                                            <th>Stok</th>
+                                            <th>Kadaluwarsa</th>
+                                            <th>Harga</th>
+                                        
+                                        </tr>
+                                    </thead>
+                                
+                                
+                                    <tbody>
+                                        <?php foreach($obat as $row){ ?>
+                                        <tr>
+                                            <td><?php echo $row->Jenis_obat ?></td>
+                                            <td><?php echo $row->Nama_obat ?></td>
+                                            <td><?php echo $row->stok ?></td>
+                                            <td><?php echo $row->kadaluwarsa ?></td>
+                                            <td><?php echo $row->hrg_obat ?></td>
+                                           
+                                        </tr>
+                                    <?php } ?>
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- end row -->
-
-
-
 
                 
             </div> <!-- end container -->
@@ -155,7 +188,6 @@
         <!-- end wrapper -->
 
 
-        <!-- Footer Start -->
         <!-- Footer Start -->
         <footer class="footer">
             <div class="container-fluid">
@@ -166,6 +198,7 @@
 
                 </div>
             </div>
+        </footer>
         <!-- end Footer -->
 
 
@@ -177,6 +210,17 @@
         <script src="<?php echo base_url();?>assets/Horizontal/dist/js/vendor/Chart.bundle.js"></script>
         <script src="<?php echo base_url();?>assets/Horizontal/dist/js/vendor/jquery.sparkline.min.js"></script>
         <script src="<?php echo base_url();?>assets/Horizontal/dist/js/vendor/jquery.knob.min.js"></script>
+
+        <script src="<?php echo base_url();?>assets/Horizontal/dist/js/vendor/jquery.dataTables.js"></script>
+        <script src="<?php echo base_url();?>assets/Horizontal/dist/js/vendor/dataTables.bootstrap4.js"></script>
+        <script src="<?php echo base_url();?>assets/Horizontal/dist/js/vendor/dataTables.responsive.min.js"></script>
+        <script src="<?php echo base_url();?>assets/Horizontal/dist/js/vendor/responsive.bootstrap4.min.js"></script>
+        <script src="<?php echo base_url();?>assets/Horizontal/dist/js/vendor/dataTables.buttons.min.js"></script>
+        <script src="<?php echo base_url();?>assets/Horizontal/dist/js/vendor/buttons.bootstrap4.min.js"></script>
+        <script src="<?php echo base_url();?>assets/Horizontal/dist/js/vendor/buttons.html5.min.js"></script>
+        <script src="<?php echo base_url();?>assets/Horizontal/dist/js/vendor/buttons.flash.min.js"></script>
+        <script src="<?php echo base_url();?>assets/Horizontal/dist/js/vendor/buttons.print.min.js"></script>
+         <script src="<?php echo base_url();?>assets/Horizontal/dist/js/pages/datatables.init.js"></script>
 
         <script src="<?php echo base_url();?>assets/Horizontal/dist/js/pages/dashboard.init.js"></script>
 
