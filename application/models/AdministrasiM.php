@@ -12,7 +12,7 @@ class AdministrasiM extends CI_Model {
     public function listPasienUmum()
 	{
 		
-		$data = $this->db->query("SELECT * FROM pasien join daftar_berobat using(idPasien) WHERE kdPoli ='1'");
+		$data = $this->db->query("SELECT * FROM pasien join daftar_berobat using(idPasien) WHERE kdPoli ='01'");
 
 		return $data->result();
 	}
@@ -27,7 +27,7 @@ WHERE t2.idPasien IS NULL");
 	}
     public function listPasienGigi()
 	{
-		$data = $this->db->query("SELECT * FROM pasien join daftar_berobat using(idPasien) WHERE kdPoli ='2'");
+		$data = $this->db->query("SELECT * FROM pasien join daftar_berobat using(idPasien) WHERE kdPoli ='02'");
 
 		return $data->result();
 	}

@@ -178,8 +178,8 @@
                                             <td><?php echo $row->tglPemeriksaan ?></td>
                                             <td><?php echo $row->anamnesa ?></td>
                                             <td><?php echo $row->diagnosa ?></td>
-                                            <td><?php echo $row->terapi ?></td>
-                                            <td><?php echo $row->ketTerapi ?></td>
+                                            <td><?php echo $row->pengobatan ?></td>
+                                            <td><?php echo $row->detPengobatan ?></td>
                                             <td> <a href="javascript: void(0);" class="dropdown-toggle arrow-none btn btn-light btn-sm" data-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             <a class="dropdown-item" href="<?php echo base_url();?>C_Dokter/editRekam/<?php echo $row->noRM ?>/<?php echo $row->idPasien ?>"><i class="mdi mdi-pencil mr-1 text-muted"></i>Edit Rekam Medis</a>

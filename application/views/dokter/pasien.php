@@ -156,7 +156,6 @@
                                             <th>Jenis Kelamin</th>
                                             <th>Alamat</th>
                                             <th>No Telp</th>
-                                            <th>Tempat, Tgl Lahir</th>
                                             <th>Pekerjaan</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -166,12 +165,11 @@
                                     <tbody>
                                         <?php foreach($pasien as $row){ ?>
                                         <tr>
-                                            <td><?php echo $row->nmPasien ?></td>
+                                            <td><?php echo $row->namaPasien ?></td>
                                             <td><?php echo $row->umur ?></td>
-                                            <td><?php echo strtoupper($row->gender) ?></td>
+                                            <td><?php echo strtoupper($row->jenisKelamin) ?></td>
                                             <td><?php echo $row->alamat ?></td>
                                             <td><?php echo $row->noTelp ?></td>
-                                            <td><?php echo $row->tempatLahir.', '.$row->tglLahir ?></td>
                                             <td><?php echo $row->pekerjaan ?></td>
                                             <td><a href="<?php echo base_url();?>C_Dokter/rekamMedis/<?php echo $row->idPasien ?>" class="btn btn-primary" data-toggle="tooltip" title="Rekam Medis"><i class="fe-folder"></i></button> 
                                                       

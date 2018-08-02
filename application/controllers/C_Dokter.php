@@ -39,8 +39,9 @@ class C_Dokter extends CI_Controller {
 		'tglPemeriksaan'=> html_escape($this->input->post('tanggal')),
 		'anamnesa' => html_escape($this->input->post('ana')),
 		'diagnosa' => html_escape($this->input->post('diagnosa')),
-		'terapi' => html_escape($this->input->post('terapi')),
-		'ketTerapi' => html_escape($this->input->post('det')),
+		'pengobatan' => html_escape($this->input->post('terapi')),
+		'detPengobatan' => html_escape($this->input->post('det')),
+		'idDokter' => $this->session->userdata('id_dokter'),
 		'idPasien' =>  html_escape($this->input->post('id')),
 		);
 		if($this->yeah->addData($data,'rekammedis')){

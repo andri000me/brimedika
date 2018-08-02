@@ -5,7 +5,9 @@ class DokterM extends CI_Model {
 
     public function listPasien()
 	{
-		$data = $this->db->get('pasien');
+
+		$kd = $this->session->userdata('poli');
+		$data = $this->db->query("SELECT * FROM pasien join daftar_berobat using(idPasien) WHERE kdPoli ='$kd'");
 
 		return $data->result();
 	}

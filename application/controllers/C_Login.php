@@ -38,7 +38,8 @@ class C_login extends CI_Controller {
                 'id_dokter' => $row->idDokter,
                 'username' => $row->namaDokter,
                 'nama' => $row->namaDokter,
-                'level' => 'Dokter'
+                'level' => 'Dokter',
+                'poli' => $row->kdPoli
             );
          $this->session->set_userdata($data);
         redirect('C_Dokter');

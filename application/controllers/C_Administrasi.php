@@ -112,7 +112,7 @@ class C_Administrasi extends CI_Controller {
 		$data = array(
 		'idPasien'=> html_escape($this->input->post('idPasien')),
 		'tglBerobat' => html_escape($this->input->post('tanggal')),
-		'kdPoli' => 2
+		'kdPoli' => '02'
 		);
 		if($this->yeah->addData($data,'daftar_berobat')){
 			$message = array('message'=>'Data Pasien berhasil ditambah', 'class'=>'alert alert-primary');
@@ -128,7 +128,7 @@ class C_Administrasi extends CI_Controller {
 		$data = array(
 		'idPasien'=> html_escape($this->input->post('idPasien')),
 		'tglBerobat' => html_escape($this->input->post('tanggal')),
-		'kdPoli' => 1
+		'kdPoli' => '01'
 		);
 		if($this->yeah->addData($data,'daftar_berobat')){
 			$message = array('message'=>'Data Pasien berhasil ditambah', 'class'=>'alert alert-primary');
